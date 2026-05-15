@@ -286,9 +286,10 @@
             setTimeout(()=>(bar.style.width='100%'),80);
             msgs.forEach((m,i)=>setTimeout(()=>(msgEl.textContent=m),i*580));
             setTimeout(()=>{
-                b.classList.add('hidden');
+                const boot = document.getElementById('bootScreen');
+                boot.classList.add('hidden');
                 setTimeout(()=>{
-                    b.classList.add('gone');
+                    boot.classList.add('gone');
                     const d=document.getElementById('orbitScreen');
                     d.classList.remove('gone');
                     positionPlanets();

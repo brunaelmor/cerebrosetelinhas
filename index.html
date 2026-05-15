@@ -133,12 +133,12 @@
                 <div class="login-title">S3T3 L1NH4S</div>
                 <div class="login-sub">CÉREBRO · ACESSO</div>
             </div>
-            <form class="login-form" onsubmit="handleLogin(event)">
-                <input type="text" class="login-input" id="loginName" placeholder="Nome da Empresa" required>
-                <input type="email" class="login-input" id="loginEmail" placeholder="Email" required>
-                <input type="password" class="login-input" id="loginPassword" placeholder="Senha" required>
-                <button type="submit" class="login-btn">ENTRAR NO SISTEMA</button>
-            </form>
+            <div class="login-form">
+                <input type="text" class="login-input" id="loginName" placeholder="Nome da Empresa">
+                <input type="email" class="login-input" id="loginEmail" placeholder="Email">
+                <input type="password" class="login-input" id="loginPassword" placeholder="Senha" onkeydown="if(event.key==='Enter')handleLogin()">
+                <button type="button" class="login-btn" onclick="handleLogin()">ENTRAR NO SISTEMA</button>
+            </div>
         </div>
     </div>
 
@@ -263,10 +263,12 @@
         }
 
         // LOGIN
-        function handleLogin(e){
-            e.preventDefault();
+        function handleLogin(){
             const name=document.getElementById('loginName').value;
-            localStorage.setItem('user',JSON.stringify({name,timestamp:Date.now()}));
+            const email=document.getElementById('loginEmail').value;
+            const pass=document.getElementById('loginPassword').value;
+            if(!name||!email||!pass){alert('Preencha todos os campos.');return;}
+            localStorage.setItem('user',JSON.stringify({name,email,timestamp:Date.now()}));
             showBoot();
         }
 
